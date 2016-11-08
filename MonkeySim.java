@@ -54,9 +54,16 @@ public class MonkeySim {
      * @return Monkey first monkey in list
      */
 
-    public static Monkey getFirstMonkey(List<Monkey> ml) {
-		    return ml.get(1);
-    }
+     public static Monkey getFirstMonkey(List<Monkey> ml) {
+
+     	int listSize = ml.size();
+     	for(int i = 0; i < listSize; i++) {
+         if(ml.get(i).getMonkeyNum() == 1){
+     	    return ml.get(i);
+         }
+     	}
+       return null;
+     }
 
     /**
      * Return a String version of a round
