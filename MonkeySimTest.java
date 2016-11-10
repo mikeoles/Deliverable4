@@ -71,6 +71,17 @@ public class MonkeySimTest {
     assertTrue(s.contains("Threw banana from Monkey (#4")&&s.contains("to Monkey (#1000"));
   }
 
+
+  @Test()
+  public void testMonkeyNums() {
+    Monkey m = Mockito.mock(Monkey.class);
+    Mockito.when(m.getId()).thenReturn(4);
+    Monkey m2 = new Monkey();
+    Mockito.when(m.getId()).thenReturn(23456);
+    String s = MonkeySim.stringifyResults(8,m,m2);
+    assertTrue(s.contains("ID 0")&&s.contains("ID 23456"));
+  }
+
   //Test the stringifyResults returns a string with
   //the correct round based on the first parameter
   @Test()
