@@ -53,18 +53,6 @@ public class MonkeySimTest {
 	  assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m);
     }
 
-    //Test that if a Monkey with a negative id is passed into stringifyResults
-    //That the method catches the error and exits running
-    @Test()
-    public void testNegavtiveIdStringify() throws NoIdException{
-      Monkey m = Mockito.mock(Monkey.class);
-      Monkey m2 = new Monkey();
-      Mockito.when(m.getId()).thenThrow(NoIdException.class);
-      MonkeySim.stringifyResults(2,m,m2);
-      //program should exit after this line
-      fail();
-    }
-
   //Test that stringifyResults returns a string with
   //the correct number of the monkey that threw and caught a banana
   @Test()
@@ -77,9 +65,9 @@ public class MonkeySimTest {
     assertTrue(s.contains("Threw banana from Monkey (#4")&&s.contains("to Monkey (#1000"));
   }
 
-
+  //Check that the correct ID's are printed out by stringifyResults
   @Test()
-  public void testMonkeyNums() {
+  public void testMonkeyIds() {
     Monkey m = Mockito.mock(Monkey.class);
     Mockito.when(m.getId()).thenReturn(4);
     Monkey m2 = new Monkey();
