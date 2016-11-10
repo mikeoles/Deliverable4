@@ -17,7 +17,9 @@ public class MonkeySimTest {
 	public void testFirstMonkeyNum1() throws NoIdException {
 	  List<Monkey> monkeyList = new LinkedList<Monkey>();
 	  Monkey m1 = new Monkey();
+    Monkey m2 = new Monkey();
 	  monkeyList.add(m1);
+    monkeyList.add(m2);
 	  assertEquals(MonkeySim.getFirstMonkey(monkeyList).getMonkeyNum(), 1);
     }
 
@@ -67,13 +69,13 @@ public class MonkeySimTest {
 
   //Check that the correct ID's are printed out by stringifyResults
   @Test()
-  public void testMonkeyIds() {
+  public void testMonkeyIds() throws NoIdException{
     Monkey m = Mockito.mock(Monkey.class);
     Mockito.when(m.getId()).thenReturn(4);
-    Monkey m2 = new Monkey();
-    Mockito.when(m.getId()).thenReturn(23456);
+    Monkey m2 = Mockito.mock(Monkey.class);
+    Mockito.when(m2.getId()).thenReturn(23456);
     String s = MonkeySim.stringifyResults(8,m,m2);
-    assertTrue(s.contains("ID 0")&&s.contains("ID 23456"));
+    assertTrue(s.contains("ID 4")&&s.contains("ID 23456"));
   }
 
   //Test the stringifyResults returns a string with
