@@ -12,45 +12,51 @@ import java.util.*;
 import org.mockito.*;
 
 public class MonkeySimTest {
-
+	// Test that the first Monkey in monkeyList has a monkeyNum of 1
     @Test()
-	public void getFirstMonkeyReturnsMonkeyForNonEmptyList() {
-        List<Monkey> monkeyList = new LinkedList<Monkey>();
-        Monkey m = new Monkey();
-        monkeyList.add(m);
-        assertEquals(MonkeySim.getFirstMonkey(monkeyList), m);
+	public void testFirstMonkeyNum1() throws NoIdException {
+	  List<Monkey> monkeyList = new LinkedList<Monkey>();
+	  Monkey m1 = new Monkey();
+	  monkeyList.add(m1);
+	  assertEquals(MonkeySim.getFirstMonkey(monkeyList).getMonkeyNum(), 1);
     }
 
+	// Test that the first monkey in monkeyList is null if no Monkeys were
+	// added to monkeyList
     @Test()
-	public void getFirstMonkeyReturnsNullForEmptyList() {
-        List<Monkey> monkeyList = new LinkedList<Monkey>();
-        assertNull(MonkeySim.getFirstMonkey(monkeyList));
+	public void testFirstMonkeyNullForEmptyList() {
+	  List<Monkey> monkeyList = new LinkedList<Monkey>();
+	  assertNull(MonkeySim.getFirstMonkey(monkeyList));
     }
 
+	// Test that getFirstMonkey will not return a Monkey other than
+	// the first one that was added to monkeyList
     @Test()
-	public void getFirstMonkeyNeverReturnsNotFirstMonkey() {
-        List<Monkey> monkeyList = new LinkedList<Monkey>();
-        Monkey m1 = new Monkey();
-        monkeyList.add(m1);
-        Monkey m2 = new Monkey();
-        monkeyList.add(m2);
-        Monkey m3 = new Monkey();
-        monkeyList.add(m3);
-        assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m2);
-        assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m3);
+	public void testReturnOnlyFirstMonkey() {
+	  List<Monkey> monkeyList = new LinkedList<Monkey>();
+	  Monkey m1 = new Monkey();
+	  monkeyList.add(m1);
+	  Monkey m2 = new Monkey();
+	  monkeyList.add(m2);
+	  Monkey m3 = new Monkey();
+	  monkeyList.add(m3);
+	  assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m2);
+	  assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m3);
     }
 
+	// Tests that the a Monkey must be added to monkeyList in order to
+	// be returned as the first Monkey in the list
     @Test()
-	public void getFirstMonkeyNeverReturnsMonkeyNotInList() {
-        List<Monkey> monkeyList = new LinkedList<Monkey>();
-        Monkey m = new Monkey();
-        assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m);
+	public void testFirstMonkeyAdded() {
+	  List<Monkey> monkeyList = new LinkedList<Monkey>();
+	  Monkey m = new Monkey();
+	  assertNotEquals(MonkeySim.getFirstMonkey(monkeyList), m);
     }
 
     //Test that if a Monkey with a negative id is passed into stringifyResults
     //That the method catches the error and exits running
     @Test()
-    public void testNegavtiveIdStringify()throws NoIdException{
+    public void testNegavtiveIdStringify() throws NoIdException{
       Monkey m = Mockito.mock(Monkey.class);
       Monkey m2 = new Monkey();
       Mockito.when(m.getId()).thenThrow(NoIdException.class);

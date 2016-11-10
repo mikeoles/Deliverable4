@@ -4,8 +4,6 @@ public class MonkeySim {
 
     private static List<Monkey> _monkeyList = new LinkedList<Monkey>();
 
-    public static final int HEADER = 50000;
-
     /**
      * Print out use message and exit with
      * error code 1.
